@@ -1,41 +1,172 @@
 @use 'base' as *;
+@use 'animations' as *;
 
 body {
     @include color($primary-color, $light_color);
-    @include textlayout(left, 100% $font-stack);
-    @include centerall(flex, center, center, column);
+    @include align(flex, center, center);
+    text-align: left; font: 100% $font-stack; 
+    flex-direction: column; 
 
-    h1 { text-align: center; }
-    h2 { font-size: 20px; text-align: center; }
-    p { font: 100% $paragraph-text; }
+    h1 { text-align: center; font-size: 25px; padding: 1em 0 1em 0; }
+    h2 { font-size: 20px; margin: 0; }
+    h3 { font-size: 18px; margin: 0.4em 0 0 0;}
+    h4 { margin: 0.2em 0 0 0; }
+    p { font: 100% $paragraph-text; margin-top: 8px; }
 }
 
 header {
-    @include dispcont(flex, center);
-    width: 70px;
-    margin: 0 auto;
+    @include align(flex, center, center);
+    flex-direction: column;
+    width: 800px;
 
-    img { width: 100%; padding: 3em; }
+    img { @include space(2em, 1em 0 1.5em); width: 100px; }
+}
+
+nav {
+    @include border($border-style $detailcolor, 0.2em 0.2em 0 0);
+    width: 100%;
+    padding: 1em 0 1em 0;
+    background-color: $detailcolor;
+    border-top-width: 0;
+
+    ul {
+        @include space(0, 0);
+        list-style: none;
+        display: flex;
+        justify-content: center;
+    }
+
+    li {
+        margin-right: 20px;
+        transition: 0.1s;
+
+        &:hover { transform: scale(1.2); }
+        &:last-child { margin-right: 0; }
+        a { text-decoration: none; padding: 5px; }
+    }
+
+    .material-symbols-outlined { 
+        @include text(30px, $deviating-color); 
+        font-weight: 400; 
+
+        &:hover { color: $deviating-light; }
+    }
+
+    #position { 
+        background-color: $lighter_color; 
+        border-radius: 5px; 
+        padding: 5px; 
+    }
+}
+
+main {
+    @include align(flex, center, center);
+    @include size(800px, auto);
+    @include border($border-style $detailcolor, 0 0 0.2em 0.2em);
+    background-color: $lighter_color;
+    flex-direction: column;
+    box-shadow: 0px 8px 10px rgba(39, 39, 39, 0.575);
+
+    #result { width: 100%; }
+    #fade { animation: fadeIn 0.3s ease-in; }
+
+    .workexperience {
+        padding: 1.5em 0 2em 2em;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0px 5px 7px rgba(0, 0, 0, 0.103);
+
+        .material-symbols-outlined {
+            @include text(30px, $deviating-color);
+            background: none;
+            border: none;
+            align-self: flex-end;
+            margin-right: 25px;
+            transition: 0.1s;
+
+            &:hover { transform: scale(1.2); cursor: pointer; color: $deviating-light; } }
+
+        h2, h3, h4 { letter-spacing: 0.5px; }
+        .desc { @include text(22px, $deviating-color); }
+        &:nth-child(odd) { background-color: $primary-color; } 
+    }
+
+    #addbtn {
+        @include align(flex, center, center);
+        @include size(464px, 50px);
+        @include border(0, 0 0 5px 5px);
+        margin-bottom: 4em;
+        background-color: $deviating-color;
+        font: 100% $paragraph-text;
+        font-weight: 600;
+        color: $primary-color;
+        letter-spacing: 0.5px;
+        max-width: 100%;
+        transition: 0.2s;
+        
+        &:hover { background-color: $deviating-light; cursor: pointer; }
+
+        .material-symbols-outlined {
+            @include text(30px, $primary-color);
+            border: none;
+            background: none;
+            font-weight: 600; }
+    }
+}
+
+form {
+    padding: 2em;
+    background-color: $primary-color;
+    border-radius: 5px 5px 0 0;
+    width: 400px;
+    box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.301);
+
+    div {
+        margin: 1em 0 0 0;
+
+        &:first-child { margin: 0; }
+        &:last-child { margin: 2em 0 0 0; }
+    }
+
+    input {
+        @include size(100%, 40px);
+        @include border(0, 3px);
+        font: 100% $paragraph-text;
+        font-size: 14px;
+
+        &[type="text"] { @include boxspace(0 0 0 0.8em, border-box); }
+    }
+    
+    textarea {
+        @include size(100%, 120px);
+        @include border(0, 3px);
+        font: 100% $paragraph-text;
+
+        &::placeholder { font-size: 14px; padding: 0.5em 0 0 0.5em; }
+        &[type="text"] { @include boxspace(0.3em 0 0 0.3em, border-box); }
+    }
 }
 
 section {
-    @include centerall(flex, center, center, column);
-    @include width(700px, 100%);
-    background-color: $lighter_color;
-    padding: 0 0 3em 0;
-    border-radius: 1em;
-    border: 1px solid $detailcolor;
+    width: 100%;
+
+    div {
+        @include boxspace(2em 4em 5em 4em, border-box);
+        width: 100%;
+        margin: 0 auto;
+        background-color: $primary-color;
+
+        .material-symbols-outlined { color: $deviating-color; }
+    }
 }
 
 footer {
-    @include centergap(flex, center, 1em);
-    @include space(20px, auto 0 0);
-    align-self: center;
-    align-items: center;
-    margin: 0 auto;
+    @include align(flex, center, center);
+    margin: 3em 0;
+    gap: 1em; 
 
     img { @include size(40px, 15px); }
     p { font-size: 12px; }
 }
 
-@media only screen and (max-width: 600px) { }
+@media only screen and (max-width: 800px) { }
