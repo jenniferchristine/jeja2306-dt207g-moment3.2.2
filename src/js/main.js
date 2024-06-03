@@ -9,6 +9,7 @@ async function fetchData() {
             throw new Error("Could not connect to API" + response.statusText);
         }
         const data = await response.json();
+        console.log(data);
         return data; // returnerar från api
     } catch (error) {
         console.error("Could not fetch data", error);
@@ -35,12 +36,15 @@ async function displayData() {
             deleteBtn.classList.add("material-symbols-outlined");
             deleteBtn.innerHTML = "delete";
 
+            workExperience.appendChild(deleteBtn);
+            resultDiv.appendChild(workExperience);
+
             deleteBtn.addEventListener('click', async (e) => {
                 try {
                     const confirmation = confirm("OBS: Är du säker på att du vill radera denna?");
 
                     if (confirmation) {
-                        // kalla på radera funktion
+                        await deleteData(item._id);
                         resultDiv.removeChild(workExperience); // tar bort från sida
                     }
                 } catch (error) {
@@ -53,4 +57,17 @@ async function displayData() {
     }
 };
 
-fetchData();
+async function deleteData(id) {
+    const url = "https://jeja2306-dt207g-moment3-2-1.onrender.com/workexperiences/" + id;
+
+    const response = await fetch(url, {
+        method: 'DELETE'
+    });
+    if (!response.ok) {
+        throw new Error("Failed to delete data");
+    }
+    const data = await response.json();
+    console.log("Data deleted", data);
+}
+
+displayData();
