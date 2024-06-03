@@ -1,0 +1,41 @@
+@use 'base' as *;
+
+body {
+    @include color($primary-color, $light_color);
+    @include textlayout(left, 100% $font-stack);
+    @include centerall(flex, center, center, column);
+
+    h1 { text-align: center; }
+    h2 { font-size: 20px; text-align: center; }
+    p { font: 100% $paragraph-text; }
+}
+
+header {
+    @include dispcont(flex, center);
+    width: 70px;
+    margin: 0 auto;
+
+    img { width: 100%; padding: 3em; }
+}
+
+section {
+    @include centerall(flex, center, center, column);
+    @include width(700px, 100%);
+    background-color: $lighter_color;
+    padding: 0 0 3em 0;
+    border-radius: 1em;
+    border: 1px solid $detailcolor;
+}
+
+footer {
+    @include centergap(flex, center, 1em);
+    @include space(20px, auto 0 0);
+    align-self: center;
+    align-items: center;
+    margin: 0 auto;
+
+    img { @include size(40px, 15px); }
+    p { font-size: 12px; }
+}
+
+@media only screen and (max-width: 600px) { }

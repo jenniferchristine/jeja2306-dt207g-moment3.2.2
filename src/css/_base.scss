@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+$font-stack: 'Poppins';
+$paragraph-text: 'Inter';
+
+$primary-color: #464646;
+$darker_color: darken($primary-color, 10%);
+$darkest_color: darken($primary-color, 13.5%);
+$lighter_color: lighten($primary-color, 8%);
+$light_color: lighten($primary-color, 100%);
+$detailcolor: lighten($primary-color, 30%);
+
+@mixin size($width, $height) {
+    width: $width;
+    height: $height;
+}
+
+@mixin width($width, $max) {
+    width: $width;
+    max-width: $max;
+}
+
+@mixin color($bkgd, $textcolor) {
+    background-color: $bkgd;
+    color: $textcolor;
+}
+
+@mixin textlayout($align, $font) {
+    text-align: $align;
+    font: $font;
+}
+
+@mixin hover($shadow, $cursor, $transform) {
+    box-shadow: $shadow;
+    cursor: $cursor;
+    transform: $transform;
+}
+
+@mixin space($padding, $margin) {
+    padding: $padding;
+    margin: $margin;
+}
+
+@mixin centergap($display, $justify, $gap) {
+    display: $display;
+    justify-content: $justify;
+    gap: $gap;
+}
+
+@mixin dispcont($display, $justify) {
+    display: $display;
+    justify-content: $justify;
+}
+
+@mixin centerall($display, $justify, $align, $flex) {
+    display: $display;
+    justify-content: $justify;
+    align-items: $align;
+    flex-direction: $flex;
+}
+
+@mixin border($border, $radius) {
+    border: $border;
+    border-radius: $radius;
+}
