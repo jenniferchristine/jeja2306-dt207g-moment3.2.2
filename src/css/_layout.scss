@@ -91,7 +91,14 @@ main {
         &:nth-child(odd) { background-color: $primary-color; } 
     }
 
-    #addbtn {
+    .error-message {
+        color: $light_color; 
+        font-size: 12px;
+        font-style: italic;
+        letter-spacing: 0.5px;
+    }
+    
+    #addBtn {
         @include align(flex, center, center);
         @include size(464px, 50px);
         @include border(0, 0 0 5px 5px);

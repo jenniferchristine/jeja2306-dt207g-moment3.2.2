@@ -28,7 +28,7 @@ async function displayData() {
 
             workExperience.innerHTML = `
             <h2>Arbetsplats: ${item.companyname}</h2>
-            <h3>Jobbtitel ${item.jobtitle}</h3>
+            <h3>Jobbtitel: ${item.jobtitle}</h3>
             <h4>Ort: ${item.location}</h4>
             <p><span class="desc">"</span> ${item.description} <span class="desc">"</span>`
     
