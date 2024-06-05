@@ -9,7 +9,7 @@ body {
 
     h1 { text-align: center; font-size: 25px; padding: 1em 0 1em 0; }
     h2 { font-size: 20px; margin: 0; }
-    h3 { font-size: 18px; margin: 0.4em 0 0 0;}
+    h3 { font-size: 18px; margin: 0.4em 0 0 0; }
     h4 { margin: 0.2em 0 0 0; }
     p { font: 100% $paragraph-text; margin-top: 8px; }
 }
@@ -59,6 +59,42 @@ nav {
     }
 }
 
+.overlay {
+    @include size(100%, 100%);
+    @include placing(fixed, 0, 0);
+    display: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.confirmation-box {
+    @include border($border-style $darkest_color, 0.3em);
+    @include placing(fixed, 20%, 50%);
+    transform: translate(-50%, 050%);
+    background-color: $detailcolor;
+    padding: 5em;
+    z-index: 1001;
+
+    .button-div {
+        display: flex;
+        justify-content: center;
+        margin: 1em 0 0;
+    }
+
+    button {
+        @include size(100%, 40px);
+        @include border(none, 0.2em);
+        margin: 1em 1em 0 1em;
+        font: 100% $paragraph-text;
+        background-color: $deviating-color;
+        box-shadow: 0 2px 5px 0 rgba(92, 92, 92, 0.5);
+        cursor: pointer;
+        transition: 0.2s;
+
+        &:hover { @include color(darken($deviating-color, 20%), $light_color); }
+    }
+}
+
 main {
     @include align(flex, center, center);
     @include size(800px, auto);
@@ -92,20 +128,17 @@ main {
     }
 
     .error-message {
-        color: $light_color; 
-        font-size: 12px;
+        @include text(12px, $light_color);
         font-style: italic;
         letter-spacing: 0.5px;
     }
 
     #confirmation {
+        @include border($border-style, 0.3em);
+        @include space(2em, 0 0 2em 0);
         display: none;
         animation: fadeColor 0.2s forwards;
         color: $light_color;
-        padding: 2em; 
-        margin-bottom: 2em;
-        border: $border-style;
-        border-radius: 0.3em;
     }
 
     .text { font-size: 12px; a { color: white; }}
@@ -114,11 +147,10 @@ main {
         @include align(flex, center, center);
         @include size(464px, 50px);
         @include border(0, 0 0 5px 5px);
+        @include color($deviating-color, $primary-color);
         margin-bottom: 4em;
-        background-color: $deviating-color;
         font: 100% $paragraph-text;
         font-weight: 600;
-        color: $primary-color;
         letter-spacing: 0.5px;
         max-width: 100%;
         transition: 0.2s;
@@ -131,53 +163,6 @@ main {
             background: none;
             font-weight: 600; }
     }
-}
-
-.confirmation-box {
-    position: fixed;
-    top: 20%;
-    left: 50%;
-    transform: translate(-50%, 050%);
-    background-color: $detailcolor;
-    padding: 5em;
-    border: 1px solid black;
-    border-radius: 0.3em;
-    z-index: 1001;
-
-    .button-div {
-        display: flex;
-        justify-content: center;
-        margin: 1em 0 0;
-    }
-
-    button {
-        width: 100%; 
-        height: 40px;
-        margin: 1em 1em 0 1em;
-        font: 100% $paragraph-text;
-        border: none;
-        border-radius: 0.2em;
-        background-color: $deviating-color;
-        box-shadow: 0 2px 5px 0 rgba(92, 92, 92, 0.5);
-        cursor: pointer;
-
-        &:hover {
-            background-color: darken($deviating-color, 20%);
-            color: $light_color;
-            transition: 0.2s;
-        }
-    }
-}
-
-.overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Färg med 50% genomskinlighet */
-    z-index: 1000;
 }
 
 form {

@@ -56,3 +56,9 @@ $border-style: 1px solid;
     font-size: $size;
     color: $color;
 }
+
+@mixin placing($position, $top, $left) {
+    position: $position;
+    top: $top;
+    left: $left;
+}
