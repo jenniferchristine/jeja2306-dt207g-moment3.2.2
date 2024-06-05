@@ -9,7 +9,8 @@
     <script src="js/add.js" type="module"></script>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
 <body>
@@ -27,28 +28,30 @@
     <main>
         <h1>Lägg till arbetserfarenhet</h1>
         <div id="result">
-        <form id="addform" onsubmit="event.preventDefault(); addData();">
-            <div>
-                <label for="companyname">Arbetsgivare:</label><br>
-                <input type="text" name="companyname" id="companyname" placeholder="Namn på arbetsgivare">
-                <div id="companynameError" class="error-message"></div>
-            </div>
-            <div>
-                <label for="jobtitle">Arbetsroll:</label><br>
-                <input type="text" name="jobtitle" id="jobtitle" placeholder="Titel på arbetsroll">
-                <div id="jobtitleError" class="error-message"></div>
-            </div>
-            <div>
-                <label for="location">Lokalisering för arbete:</label><br>
-                <input type="text" name="location" id="location" placeholder="Ort för arbete">
-                <div id="locationError" class="error-message"></div>
-            </div>
-            <div>
-                <label for="description">Beskrivning av arbete:</label><br>
-                <textarea type="text" rows="4" cols="50" name="description" placeholder="Beskriv din arbetsroll här..." id="description"></textarea>
-                <div id="descriptionError" class="error-message"></div>     
-            </div>
-        </form>
+            <div id="confirmation"></div>
+            <form id="addform" onsubmit="event.preventDefault(); addData();">
+                <div>
+                    <label for="companyname">Arbetsgivare:</label><br>
+                    <input type="text" name="companyname" id="companyname" placeholder="Namn på arbetsgivare">
+                    <div id="companynameError" class="error-message"></div>
+                </div>
+                <div>
+                    <label for="jobtitle">Arbetsroll:</label><br>
+                    <input type="text" name="jobtitle" id="jobtitle" placeholder="Titel på arbetsroll">
+                    <div id="jobtitleError" class="error-message"></div>
+                </div>
+                <div>
+                    <label for="location">Lokalisering för arbete:</label><br>
+                    <input type="text" name="location" id="location" placeholder="Ort för arbete">
+                    <div id="locationError" class="error-message"></div>
+                </div>
+                <div>
+                    <label for="description">Beskrivning av arbete:</label><br>
+                    <textarea type="text" rows="4" cols="50" name="description"
+                        placeholder="Beskriv din arbetsroll här..." id="description"></textarea>
+                    <div id="descriptionError" class="error-message"></div>
+                </div>
+            </form>
         </div>
         <div id="addBtn">
             <button class="material-symbols-outlined">add</button>

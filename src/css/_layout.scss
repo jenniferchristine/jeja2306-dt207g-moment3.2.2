@@ -97,7 +97,19 @@ main {
         font-style: italic;
         letter-spacing: 0.5px;
     }
-    
+
+    #confirmation {
+        display: none;
+        animation: fadeColor 0.2s forwards;
+        color: $light_color;
+        padding: 2em; 
+        margin-bottom: 2em;
+        border: $border-style;
+        border-radius: 0.3em;
+    }
+
+    .text { font-size: 12px; a { color: white; }}
+
     #addBtn {
         @include align(flex, center, center);
         @include size(464px, 50px);

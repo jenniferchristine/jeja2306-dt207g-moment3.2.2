@@ -48,8 +48,10 @@ async function addData() {
         const data = await response.json();
         console.log("Data added", data);
 
-        window.location.href = "index.html"; // skicka användaren dit det lagts till
-        alert("Din arbetserfarenhet har lagts till! Du skickas nu till resultatet");
+        const confirmationDiv = document.getElementById("confirmation");
+        confirmationDiv.innerHTML = `Din arbetslivserfarenhet har lagts till! <br> 
+        <p class="text">> Klicka <a href="index.html">här</a> för att komma till ditt CV<p>`;
+        confirmationDiv.style.display = "block";
 
     } catch (error) {
         console.error("Error when adding data", error);

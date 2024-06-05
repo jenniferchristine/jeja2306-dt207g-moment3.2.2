@@ -11,3 +11,13 @@
       transform: translateY(0);
     }
   }
+
+  @keyframes fadeColor {
+    from {
+      background-color: lighten($darker_color, 20%);
+    }
+  
+    to {
+      background-color: $darker_color;
+    }
+  }
