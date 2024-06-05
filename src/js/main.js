@@ -22,10 +22,11 @@ async function displayData() {
 
     try {
         const data = await fetchData();
-        data.forEach( item => {
-            const workExperience = document.createElement("div");
+        data.forEach( item => { // loopar igenom resultat
+            const workExperience = document.createElement("div"); // skapar div och klass för varje
             workExperience.classList.add("workexperience");
 
+            // målar ut
             workExperience.innerHTML = `
             <h2>Arbetsplats: ${item.companyname}</h2>
             <h3>Jobbtitel: ${item.jobtitle}</h3>
@@ -40,10 +41,10 @@ async function displayData() {
             resultDiv.appendChild(workExperience);
 
             deleteBtn.addEventListener('click', async (e) => {
-                try {
-                    const confirmation = confirm("OBS: Är du säker på att du vill radera denna?");
+                try { // provar en bekräftelse via funktionen
+                    const confirmed = await showConfirmation("Är du säker på att du vill radera denna erfarenhet?");
 
-                    if (confirmation) {
+                    if (confirmed) { // om confirmad raderas
                         await deleteData(item._id);
                         resultDiv.removeChild(workExperience); // tar bort från sida
                     }
@@ -57,7 +58,44 @@ async function displayData() {
     }
 };
 
-async function deleteData(id) {
+async function showConfirmation(message) {
+    const overlay = document.querySelector(".overlay");
+    overlay.style.display = "block"; // overlay blir synglig när denna funktion körs
+
+    return new Promise((resolve, reject) => { // skapar promise för resultatet
+        const confirmation = document.createElement("div");
+        confirmation.classList.add("confirmation-box");
+        confirmation.innerHTML = `
+        <div>${message}</div>
+        <button class="confirmBtn" id="yes">Ja</button>
+        <button class="confirmBtn" id="no">Nej</button>`;
+
+        document.body.appendChild(confirmation);
+        const buttonDiv = document.createElement("div");
+        buttonDiv.classList.add("button-div");
+
+        const yesBtn = document.getElementById("yes");
+        const noBtn = document.getElementById("no");
+
+        buttonDiv.appendChild(yesBtn);
+        buttonDiv.appendChild(noBtn);
+        confirmation.appendChild(buttonDiv);
+
+        yesBtn.addEventListener('click', () => {
+            document.body.removeChild(confirmation);
+            overlay.style.display = "none"; // overlay försvinner när klickad
+            resolve(true); // ja blir klickad
+        });
+
+        noBtn.addEventListener('click', () => {
+            document.body.removeChild(confirmation);
+            overlay.style.display = "none";
+            resolve(false); // nej blir klickad
+        });
+    })
+}
+
+async function deleteData(id) { // hämtar specifikt resultat
     const url = "https://jeja2306-dt207g-moment3-2-1.onrender.com/workexperiences/" + id;
 
     const response = await fetch(url, {
